@@ -19,6 +19,7 @@ import {
   blsVerifyProof,
 } from "@mattrglobal/node-bbs-signatures";
 
+// npm i --save bs58
 import {encode} from "bs58"
 
 const main = async (): Promise<void> => {
