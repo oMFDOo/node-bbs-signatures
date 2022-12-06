@@ -19,13 +19,25 @@ import {
   blsVerifyProof,
 } from "@mattrglobal/node-bbs-signatures";
 
+import {encode} from "bs58"
+
 const main = async (): Promise<void> => {
+  const bs58 = require('bs58');
+
   //Generate a new key pair
   const keyPair = await generateBls12381G2KeyPair();
 
-  console.log("Key pair generated");
+  console.log("=====Key pair 64=====");
   console.log(`Public key base64 = ${Buffer.from(keyPair.publicKey).toString("base64")}`);
+  console.log(`Private key base64 = ${Buffer.from(keyPair.secretKey).toString("base64")}`);
+  console.log("=====================\n")
 
+  console.log("\n=====Key pair 58=====")
+  console.log(bs58.encode(keyPair.publicKey));
+  console.log(bs58.encode(keyPair.secretKey));
+  console.log("=====================\n\n")
+  
+  
   //Set of messages we wish to sign
   const messages = [
     Uint8Array.from(Buffer.from("message1", "utf-8")),
